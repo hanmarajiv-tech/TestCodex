@@ -1,0 +1,27 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "rag-mvp"
+version = "0.1.0"
+description = "Pluggable Redis-driven document search with LlamaIndex and Qdrant"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+  "fastembed>=0.7,<0.8",
+  "llama-index-core>=0.14,<0.15",
+  "llama-index-vector-stores-qdrant>=0.9,<0.10",
+  "llama-index-embeddings-fastembed>=0.5,<0.6",
+  "qdrant-client>=1.16,<1.17",
+  "redis>=6,<8",
+  "pydantic>=2.11,<3",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8,<10", "fakeredis>=2.30,<3"]
+
+[project.scripts]
+rag-worker = "rag_mvp.main:main"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
